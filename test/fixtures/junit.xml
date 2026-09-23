@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="4" assertions="2" failures="2" skipped="1" time="0.004332">
+  <testsuite name="a.test.ts" file="a.test.ts" tests="4" assertions="2" failures="2" skipped="1" time="0.001245" hostname="s-MacBook-Pro.local">
+    <testsuite name="math" file="a.test.ts" line="2" tests="3" assertions="2" failures="1" skipped="1" time="0" hostname="s-MacBook-Pro.local">
+      <testcase name="adds" classname="math" time="0.000011" file="a.test.ts" line="3" assertions="1" />
+      <testcase name="fails" classname="math" time="0.000329" file="a.test.ts" line="4" assertions="1">
+        <failure type="AssertionError" message="expect(received).toBe(expected)&#10;&#10;Expected: 3&#10;Received: 2&#10;">AssertionError: expect(received).toBe(expected)&#10;&#10;Expected: 3&#10;Received: 2&#10;&#10;      at a.test.ts:4:39&#10;</failure>
+      </testcase>
+      <testcase name="skipped" classname="math" time="0" file="a.test.ts" line="5" assertions="0">
+        <skipped />
+      </testcase>
+    </testsuite>
+    <testcase name="throws" classname="" time="0.000039" file="a.test.ts" line="7" assertions="0">
+      <failure type="Error" message="boom">Error: boom&#10;      at a.test.ts:7:46&#10;</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

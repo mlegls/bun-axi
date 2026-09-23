@@ -1,0 +1,42 @@
+{
+  "name": "bun-axi",
+  "version": "0.1.0",
+  "description": "Agent-ergonomic Bun: test and script results as counts and failures, dependency lookups, in compact TOON output.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "bun-axi": "bin/bun-axi.ts"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "bun": ">=1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlegls/bun-axi.git"
+  },
+  "keywords": [
+    "axi",
+    "agent",
+    "bun",
+    "cli",
+    "toon"
+  ],
+  "scripts": {
+    "test": "bun test test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axi-sdk-js": "^0.1.12"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,12 @@
+
+  ⚠ eslint(no-unused-vars): Variable 'unused' is declared but never used.
+   ╭─[a.ts:3:5]
+ 2 │ export function f(y) { return y; }
+ 3 │ let unused = 1;
+   ·     ───┬──
+   ╰────
+
+  × eslint(no-debugger): `debugger` statement is not allowed
+   ╭─[b.ts:9:1]
+ 9 │ debugger;
+   ╰────

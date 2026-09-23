@@ -1,0 +1,42 @@
+bun test v1.4.2 (744846f84)
+
+a.test.ts:
+(pass) math > adds [0.01ms]
+1 | import { test, expect, describe } from "bun:test";
+2 | describe("math", () => {
+3 |   test("adds", () => { expect(1 + 1).toBe(2); });
+4 |   test("fails", () => { expect(1 + 1).toBe(3); });
+                                          ^
+error: expect(received).toBe(expected)
+
+Expected: 3
+Received: 2
+
+      at <anonymous> (/private/tmp/bjt/a.test.ts:4:39)
+(fail) math > fails [0.33ms]
+(skip) math > skipped
+2 | describe("math", () => {
+3 |   test("adds", () => { expect(1 + 1).toBe(2); });
+4 |   test("fails", () => { expect(1 + 1).toBe(3); });
+5 |   test.skip("skipped", () => {});
+6 | });
+7 | test("throws", () => { throw new Error("boom"); });
+                                                 ^
+error: boom
+      at <anonymous> (/private/tmp/bjt/a.test.ts:7:46)
+(fail) throws [0.04ms]
+
+b.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './missing' from '/private/tmp/bjt/b.test.ts'
+-------------------------------
+
+
+ 1 pass
+ 1 skip
+ 3 fail
+ 1 error
+ 2 expect() calls
+Ran 5 tests across 2 files. [4.00ms]
