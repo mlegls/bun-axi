@@ -2,7 +2,7 @@ import { existsSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { runAxiCli, AxiError, installSessionStartHooks, sessionStartHookStatus, uninstallSessionStartHooks } from "axi-sdk-js";
 import { VERSION } from "./version.ts";
-import { parseFlags, usage } from "./flags.ts";
+import { count, parseFlags, usage } from "./flags.ts";
 import { capture, logDir, oneLine, preview, seconds, shortPath } from "./proc.ts";
 import { consoleSummary, parseJunit } from "./tests.ts";
 import { diagnostics, summarize } from "./diagnostics.ts";
@@ -203,9 +203,9 @@ export async function main(argv: string[]) {
 			outdated: async args => { const { values } = parseFlags("outdated", args, { filter: { type: "string", multiple: true } }); return packages.outdated(process.cwd(), (values.filter ?? []).flatMap(f => ["--filter", f])); },
 			why: async args => { const { positionals } = parseFlags("why", args, {}); return packages.why(process.cwd(), needs("why", positionals)); },
 			view: async args => { const { positionals } = parseFlags("view", args, {}); return packages.view(needs("view", positionals)); },
-			versions: async args => { const { values, positionals } = parseFlags("versions", args, { limit: { type: "string" }, all: { type: "boolean" } }); return packages.versions(needs("versions", positionals), Number(values.limit ?? 15), values.all); },
+			versions: async args => { const { values, positionals } = parseFlags("versions", args, { limit: { type: "string" }, all: { type: "boolean" } }); return packages.versions(needs("versions", positionals), count("versions", "limit", values.limit, 15), values.all); },
 			deps: async args => { const { positionals } = parseFlags("deps", args, {}); return packages.deps(needs("deps", positionals)); },
-			search: async args => { const { values, positionals } = parseFlags("search", args, { limit: { type: "string" } }); if (!positionals.length) usage("search needs words", "Run `bun-axi search <words...>`"); return packages.search(positionals.join(" "), Number(values.limit ?? 10)); },
+			search: async args => { const { values, positionals } = parseFlags("search", args, { limit: { type: "string" } }); if (!positionals.length) usage("search needs words", "Run `bun-axi search <words...>`"); return packages.search(positionals.join(" "), count("search", "limit", values.limit, 10)); },
 		},
 	});
 }

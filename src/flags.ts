@@ -20,3 +20,11 @@ export function parseFlags<S extends FlagSpec>(command: string, args: string[], 
 export function usage(message: string, ...suggestions: string[]): never {
 	throw new AxiError(message, "VALIDATION_ERROR", suggestions);
 }
+
+/** A --limit style flag: absent means the default, anything but a positive integer is a usage error. */
+export function count(command: string, flag: string, value: string | undefined, fallback: number): number {
+	if (value === undefined) return fallback;
+	const n = Number(value);
+	if (!Number.isInteger(n) || n < 1) usage("--" + flag + " must be a positive integer, got " + JSON.stringify(value), "Run `bun-axi " + command + " --" + flag + " " + fallback + "`");
+	return n;
+}

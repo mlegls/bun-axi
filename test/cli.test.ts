@@ -49,3 +49,11 @@ test("home without package.json says so", async () => {
 	const r = await axi(project({}));
 	expect(r.out).toContain("project: \"none: no package.json");
 });
+
+test("--limit rejects anything but a positive integer, before any registry call", async () => {
+	for (const [cmd, value] of [["versions", "abc"], ["versions", "-1"], ["search", "0"], ["search", "2.5"]]) {
+		const r = await axi(project({}), cmd, "x", "--limit=" + value);
+		expect(r.code).toBe(2);
+		expect(r.out).toContain("must be a positive integer");
+	}
+});
